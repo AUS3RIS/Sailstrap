@@ -1,0 +1,64 @@
+!!!
+head
+  title #{title}
+  meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
+  
+  // STYLES 
+  link(rel="stylesheet", href="/gui/styles/libraries/bootstrap.css")
+  link(rel="stylesheet", href="/gui/styles/main.css")
+  // STYLES END 
+  
+body
+  // CONTENT 
+  div.container
+    nav.navbar.navbar-default
+      div.navbar-header
+        a.navbar-brand(href='/') #{title}
+      ul.nav.navbar-nav.navbar-left
+        li
+          a(href='/movies') Movies
+      if req.isAuthenticated()
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href='/logout') Welcome, #{JSON.stringify(req.session.passport.user)}! Log out
+      else
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href='/login') Log in
+    
+    block body
+  // CONTENT END 
+  
+  // LIBRARIES
+  script(type="text/javascript", src="/gui/libraries/socket.js")
+  script(type="text/javascript", src="/gui/libraries/sails.js")
+  script(type="text/javascript", src="/gui/libraries/jquery.js")
+  script(type="text/javascript", src="/gui/libraries/handlebars.js")
+  script(type="text/javascript", src="/gui/libraries/underscore.js")
+  script(type="text/javascript", src="/gui/libraries/backbone.js")
+  script(type="text/javascript", src="/gui/libraries/bootstrap.js")
+  // LIBRARIES END 
+  
+  // TEMPLATES
+  script(type="text/javascript", src="/gui/templates/template.js")
+  // TEMPLATES END 
+  
+  // MODELS 
+  
+  // MODELS END 
+  
+  // COLLECTIONS 
+  
+  // COLLECTIONS END 
+  
+  // VIEWS 
+  script(type="text/javascript", src="/gui/views/main.js")
+  // VIEWS END 
+  
+  // ROUTERS 
+  
+  // ROUTERS END 
+  
+  // INITIALIZE 
+  script(type="text/javascript", src="/gui/main.js")
+  // INITIALIZE END 
