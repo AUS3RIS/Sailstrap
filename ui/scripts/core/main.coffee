@@ -8,3 +8,4 @@ window.GUI =
 
 $(document).ready ->
 	#view = new MainView()
+	$('.ui.dropdown').dropdown()

@@ -2,7 +2,7 @@
   "name": "Sailstrap",
   "private": true,
   "version": "0.0.0",
-  "description": "A boilerplate for easy application setup using Sails framework.",
+  "description": "Sails.js and Backbone.js application setup boilerplate using Stylus, CoffeeScript, Jade and Handlebars.js.",
   "dependencies": {
     "connect-flash": "~0.1.1",
     "sails": "0.9.4",

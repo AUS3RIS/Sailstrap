@@ -1,9 +1,25 @@
 ###
-Allow any authenticated user.
+	# Module
+	@name         :: Authenticated
+	@module       :: Policy
+	@description  :: Defines logic used to identify authenticated users.
+
+	# Author
+	@author       :: Austris Landmanis
+	@licence      :: http://aus3ys.mit-license.org/
+	@year         :: 2013
+
+	# Contributors
+	...
 ###
-module.exports = (req, res, next) ->
-	if req.isAuthenticated()
+
+
+AuthenticatedPolicy = (request, response, next) ->
+	if request.isAuthenticated()
 		next()
 	else
-		res.send 403,
-			message: "Not Authorized"
+		response.send 403,
+			message: "You're not authenticated."
+
+
+module.exports = AuthenticatedPolicy

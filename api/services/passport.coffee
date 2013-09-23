@@ -1,3 +1,18 @@
+###
+	# Module
+	@name         :: Passport
+	@module       :: Service
+	@description  :: Provides extended functionality for Passport library.
+
+	# Author
+	@author       :: Austris Landmanis
+	@licence      :: http://aus3ys.mit-license.org/
+	@year         :: 2013
+
+	# Contributors
+	...
+###
+
 
 # helper functions
 findById = (id, fn) ->

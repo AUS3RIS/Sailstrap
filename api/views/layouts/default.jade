@@ -4,43 +4,91 @@ head
   meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
   
   // STYLES 
-  link(rel="stylesheet", href="/gui/styles/libraries/bootstrap.css")
-  link(rel="stylesheet", href="/gui/styles/main.css")
+  link(rel="stylesheet", href="/ui/styles/libraries/normalize.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/button.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/divider.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/header.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/icon.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/image.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/input.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/label.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/loader.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/progress.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/segment.css")
+  link(rel="stylesheet", href="/ui/styles/core/elements/step.css")
+  link(rel="stylesheet", href="/ui/styles/core/collections/breadcrumb.css")
+  link(rel="stylesheet", href="/ui/styles/core/collections/form.css")
+  link(rel="stylesheet", href="/ui/styles/core/collections/grid.css")
+  link(rel="stylesheet", href="/ui/styles/core/collections/menu.css")
+  link(rel="stylesheet", href="/ui/styles/core/collections/message.css")
+  link(rel="stylesheet", href="/ui/styles/core/collections/table.css")
+  link(rel="stylesheet", href="/ui/styles/core/views/comment.css")
+  link(rel="stylesheet", href="/ui/styles/core/views/feed.css")
+  link(rel="stylesheet", href="/ui/styles/core/views/item.css")
+  link(rel="stylesheet", href="/ui/styles/core/views/list.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/accordion.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/chatroom.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/checkbox.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/dimmer.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/dropdown.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/modal.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/nag.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/popup.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/rating.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/reveal.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/search.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/shape.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/sidebar.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/tab.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/transition.css")
+  link(rel="stylesheet", href="/ui/styles/core/modules/video.css")
+  link(rel="stylesheet", href="/ui/styles/main.css")
   // STYLES END 
   
 body
   // CONTENT 
-  div.container
-    nav.navbar.navbar-default
-      div.navbar-header
-        a.navbar-brand(href='/') #{title}
-      ul.nav.navbar-nav.navbar-left
-        li
-          a(href='/movies') Movies
-      if req.isAuthenticated()
-        ul.nav.navbar-nav.navbar-right
-          li
-            a(href='/logout') Welcome, #{JSON.stringify(req.session.passport.user)}! Log out
-      else
-        ul.nav.navbar-nav.navbar-right
-          li
-            a(href='/login') Log in
+  if req.isAuthenticated()
+    ul
+      li
+        a(href='/logout') Welcome, #{JSON.stringify(req.session.passport.user)}! Log out
+  else
+    ul
+      li
+        a(href='/login') Log in
     
-    block body
+  block body
   // CONTENT END 
   
-  // LIBRARIES
-  script(type="text/javascript", src="/gui/libraries/socket.js")
-  script(type="text/javascript", src="/gui/libraries/sails.js")
-  script(type="text/javascript", src="/gui/libraries/jquery.js")
-  script(type="text/javascript", src="/gui/libraries/handlebars.js")
-  script(type="text/javascript", src="/gui/libraries/underscore.js")
-  script(type="text/javascript", src="/gui/libraries/backbone.js")
-  script(type="text/javascript", src="/gui/libraries/bootstrap.js")
+  // LIBRARIES 
+  script(type="text/javascript", src="/ui/scripts/libraries/socket.js")
+  script(type="text/javascript", src="/ui/scripts/libraries/sails.js")
+  script(type="text/javascript", src="/ui/scripts/libraries/jquery.js")
+  script(type="text/javascript", src="/ui/scripts/libraries/handlebars.js")
+  script(type="text/javascript", src="/ui/scripts/libraries/underscore.js")
+  script(type="text/javascript", src="/ui/scripts/libraries/backbone.js")
+  script(type="text/javascript", src="/ui/scripts/libraries/bootstrap.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/api.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/state.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/colorize.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/form.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/accordion.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/chatroom.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/checkbox.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/dimmer.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/dropdown.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/modal.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/nag.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/popup.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/rating.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/search.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/shape.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/sidebar.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/transition.js")
+  script(type="text/javascript", src="/ui/scripts/core/modules/video.js")
   // LIBRARIES END 
   
   // TEMPLATES
-  script(type="text/javascript", src="/gui/templates/template.js")
+  
   // TEMPLATES END 
   
   // MODELS 
@@ -52,7 +100,7 @@ body
   // COLLECTIONS END 
   
   // VIEWS 
-  script(type="text/javascript", src="/gui/views/main.js")
+  script(type="text/javascript", src="/ui/scripts/core/views/main.js")
   // VIEWS END 
   
   // ROUTERS 
@@ -60,5 +108,5 @@ body
   // ROUTERS END 
   
   // INITIALIZE 
-  script(type="text/javascript", src="/gui/main.js")
+  script(type="text/javascript", src="/ui/scripts/core/main.js")
   // INITIALIZE END 

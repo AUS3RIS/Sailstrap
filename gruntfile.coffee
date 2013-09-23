@@ -1,8 +1,3 @@
-###
-Gruntfile
-TO-DO:
-Prepare tasks for production
-###
 module.exports = (grunt) ->
 	depsPath = grunt.option("gdsrc") or "node_modules/sails/node_modules"
 	grunt.loadTasks depsPath + "/grunt-sails-linker/tasks"
@@ -17,51 +12,50 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks "grunt-contrib-coffee"
 	grunt.loadNpmTasks "grunt-jade-handlebars"
 
-	###
-	###
-
 	# STYLES 
-	styleFiles = ["gui/styles/libraries/bootstrap.css", "gui/styles/*.css"]
-
+	styleFiles = [
+		"ui/styles/libraries/*.css",
+		"ui/styles/core/elements/*.css",
+		"ui/styles/core/collections/*.css",
+		"ui/styles/core/views/*.css",
+		"ui/styles/core/modules/*.css",
+		"ui/styles/*.css"
+	]
 	# STYLES END 
 
 	# SCRIPTS 
-	libraryFiles = ["gui/libraries/socket.js", "gui/libraries/sails.js", "gui/libraries/jquery.js", "gui/libraries/handlebars.js", "gui/libraries/underscore.js", "gui/libraries/backbone.js", "gui/libraries/bootstrap.js", "gui/libraries/*.js"]
-	templateFiles = ["gui/templates/*.js"]
-	modelFiles = ["gui/models/*.js"]
-	collectionFiles = ["gui/collections/*.js"]
-	viewFiles = ["gui/views/*.js"]
-	routerFiles = ["gui/routers/*.js"]
-	initializeFiles = ["gui/*.js"]
-
+	libraryFiles = [
+		"ui/scripts/libraries/socket.js",
+		"ui/scripts/libraries/sails.js",
+		"ui/scripts/libraries/jquery.js",
+		"ui/scripts/libraries/handlebars.js",
+		"ui/scripts/libraries/underscore.js",
+		"ui/scripts/libraries/backbone.js",
+		"ui/scripts/libraries/*.js",
+		"ui/scripts/core/modules/api.js",
+		"ui/scripts/core/modules/state.js",
+		"ui/scripts/core/modules/colorize.js",
+		"ui/scripts/core/modules/form.js",
+		"ui/scripts/core/modules/*.js",
+		"ui/scripts/core/semantic.js"
+	]
+	templateFiles = ["ui/templates/*.js"]
+	modelFiles = ["ui/scripts/core/models/*.js"]
+	collectionFiles = ["ui/scripts/core/collections/*.js"]
+	viewFiles = ["ui/scripts/core/views/*.js"]
+	routerFiles = ["ui/scripts/core/routers/*.js"]
+	initializeFiles = ["ui/scripts/core/*.js"]
 	# SCRIPTS END 
-	styleFiles = styleFiles.map((path) ->
-		".tmp/public/" + path
-	)
-	libraryFiles = libraryFiles.map((path) ->
-		".tmp/public/" + path
-	)
-	templateFiles = templateFiles.map((path) ->
-		".tmp/public/" + path
-	)
-	modelFiles = modelFiles.map((path) ->
-		".tmp/public/" + path
-	)
-	collectionFiles = collectionFiles.map((path) ->
-		".tmp/public/" + path
-	)
-	viewFiles = viewFiles.map((path) ->
-		".tmp/public/" + path
-	)
-	routerFiles = routerFiles.map((path) ->
-		".tmp/public/" + path
-	)
-	initializeFiles = initializeFiles.map((path) ->
-		".tmp/public/" + path
-	)
+	
+	styleFiles = styleFiles.map((path) -> ".tmp/public/" + path)
+	libraryFiles = libraryFiles.map((path) -> ".tmp/public/" + path)
+	templateFiles = templateFiles.map((path) -> ".tmp/public/" + path)
+	modelFiles = modelFiles.map((path) -> ".tmp/public/" + path)
+	collectionFiles = collectionFiles.map((path) -> ".tmp/public/" + path)
+	viewFiles = viewFiles.map((path) -> ".tmp/public/" + path)
+	routerFiles = routerFiles.map((path) -> ".tmp/public/" + path)
+	initializeFiles = initializeFiles.map((path) -> ".tmp/public/" + path)
 
-	###
-	###
 	grunt.initConfig
 		pkg: grunt.file.readJSON("package.json")
 		clean:
@@ -71,9 +65,9 @@ module.exports = (grunt) ->
 			dev:
 				files: [
 					expand: true
-					cwd: "gui"
+					cwd: "ui"
 					src: ["**/*.!(coffee|styl|jade)"]
-					dest: ".tmp/public/gui"
+					dest: ".tmp/public/ui"
 				]
 
 		jade_handlebars:
@@ -83,9 +77,9 @@ module.exports = (grunt) ->
 
 				files: [
 					expand: true
-					cwd: "gui/templates"
+					cwd: "ui/templates"
 					src: ["*.jade"]
-					dest: ".tmp/public/gui/templates"
+					dest: ".tmp/public/ui/templates"
 					ext: ".js"
 				]
 
@@ -93,12 +87,11 @@ module.exports = (grunt) ->
 			dev:
 				options:
 					bare: true
-
 				files: [
 					expand: true
-					cwd: "gui/"
+					cwd: "ui/"
 					src: ["**/*.coffee"]
-					dest: ".tmp/public/gui/"
+					dest: ".tmp/public/ui/"
 					ext: ".js"
 				]
 
@@ -106,9 +99,9 @@ module.exports = (grunt) ->
 			dev:
 				files: [
 					expand: true
-					cwd: "gui/styles/"
+					cwd: "ui/styles/"
 					src: ["*.styl"]
-					dest: ".tmp/public/gui/styles/"
+					dest: ".tmp/public/ui/styles/"
 					ext: ".css"
 				]
 
@@ -119,9 +112,8 @@ module.exports = (grunt) ->
 					endTag: "// STYLES END "
 					fileTmpl: "link(rel=\"stylesheet\", href=\"%s\")"
 					appRoot: ".tmp/public"
-
 				files:
-					"views/**/*.jade": styleFiles
+					"api/views/**/*.jade": styleFiles
 
 			libraries:
 				options:
@@ -129,9 +121,8 @@ module.exports = (grunt) ->
 					endTag: "// LIBRARIES END "
 					fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
 					appRoot: ".tmp/public"
-
 				files:
-					"views/**/*.jade": libraryFiles
+					"api/views/**/*.jade": libraryFiles
 
 			templates:
 				options:
@@ -139,9 +130,8 @@ module.exports = (grunt) ->
 					endTag: "// TEMPLATES END "
 					fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
 					appRoot: ".tmp/public"
-
 				files:
-					"views/**/*.jade": templateFiles
+					"api/views/**/*.jade": templateFiles
 
 			models:
 				options:
@@ -149,9 +139,8 @@ module.exports = (grunt) ->
 					endTag: "// MODELS END "
 					fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
 					appRoot: ".tmp/public"
-
 				files:
-					"views/**/*.jade": modelFiles
+					"api/views/**/*.jade": modelFiles
 
 			collections:
 				options:
@@ -159,9 +148,8 @@ module.exports = (grunt) ->
 					endTag: "// COLLECTIONS END "
 					fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
 					appRoot: ".tmp/public"
-
 				files:
-					"views/**/*.jade": collectionFiles
+					"api/views/**/*.jade": collectionFiles
 
 			views:
 				options:
@@ -169,9 +157,8 @@ module.exports = (grunt) ->
 					endTag: "// VIEWS END "
 					fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
 					appRoot: ".tmp/public"
-
 				files:
-					"views/**/*.jade": viewFiles
+					"api/views/**/*.jade": viewFiles
 
 			routers:
 				options:
@@ -179,9 +166,8 @@ module.exports = (grunt) ->
 					endTag: "// ROUTERS END "
 					fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
 					appRoot: ".tmp/public"
-
 				files:
-					"views/**/*.jade": routerFiles
+					"api/views/**/*.jade": routerFiles
 
 			initialize:
 				options:
@@ -189,16 +175,14 @@ module.exports = (grunt) ->
 					endTag: "// INITIALIZE END "
 					fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
 					appRoot: ".tmp/public"
-
 				files:
-					"views/**/*.jade": initializeFiles
+					"api/views/**/*.jade": initializeFiles
 
 		watch:
 			api:
 				files: ["api/**/*"]
-
 			assets:
-				files: ["gui/**/*"]
+				files: ["ui/**/*", "ui/**/**/*", "ui/**/**/**/*"]
 				tasks: ["compileAssets", "linkAssets"]
 
 	grunt.registerTask "default", ["compileAssets", "linkAssets", "watch"]

@@ -13,37 +13,42 @@
 	...
 ###
 
-bcrypt = require("bcrypt")
-module.exports =
+bcrypt = require 'bcrypt'
+
+
+UserModel =
+	###
+		Data attributes
+	###
+	
 	attributes:
 		username:
-			type: "string"
+			type: 'string'
 			required: true
 			unique: true
-
+	
 		password:
-			type: "string"
+			type: 'string'
 			required: true
-
+	
 		toJSON: ->
+			object = @toObject()
+			delete object.password
+			object
 
-			# this gives you an object with the current values
-			obj = @toObject()
-
-			# Remove the password object value
-			delete obj.password
-
-
-			# return the new object without password
-			obj
-
-	beforeCreate: (user, cb) ->
-		bcrypt.genSalt 10, (err, salt) ->
-			bcrypt.hash user.password, salt, (err, hash) ->
-				if err
-					console.log err
-					cb err
+	###
+		Callback actions
+	###	
+	
+	beforeCreate: (user, callback) ->
+		bcrypt.genSalt 10, (error, salt) ->
+			bcrypt.hash user.password, salt, (error, hash) ->
+				if error
+					console.log error
+					callback error
 				else
 					user.password = hash
-					cb null, user
+					callback null, user
 
+
+module.exports = UserModel
