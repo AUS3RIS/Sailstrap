@@ -2,7 +2,7 @@
   "name": "Sailstrap",
   "private": true,
   "version": "0.0.0",
-  "description": "Sails.js and Backbone.js application setup boilerplate using Stylus, CoffeeScript, Jade and Handlebars.js.",
+  "description": "",
   "dependencies": {
     "connect-flash": "~0.1.1",
     "sails": "0.9.4",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/aus3ys/sailstrap.git"
+    "url": ""
   },
   "author": "Austris Landmanis",
   "license": "http://aus3ys.mit-license.org/"

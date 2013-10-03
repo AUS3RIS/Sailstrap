@@ -1,17 +1,18 @@
 extends ../layouts/default
 
 block body
-	form.ui.form.segment(method='post', action='/process')
-		div.field
-			label Username
-			div.ui.left.labeled.input
-				input(type='text', name='username', placeholder='Username')
-				div.ui.corner.label
-					i.icon.asterisk
-		div.field
-			label Password
-			div.ui.left.labeled.input
-				input(type='password', name='password', placeholder='Password')
-				div.ui.corner.label
-					i.icon.asterisk
-		input.ui.blue.submit.button(type='submit', value='Log in')
+  div.container
+    div.row
+      div.col-md-12
+        form.form-horizontal(method='post', action='/process')
+          div.form-group
+            label.col-lg-2.control-label Username
+            div.col-lg-10
+              input.form-control(name='username', type='text', placeholder='Username')
+          div.form-group
+            label.col-lg-2.control-label Password
+            .col-lg-10
+              input.form-control(name='password', type='password', placeholder='Password')
+          div.form-group
+            div.col-lg-offset-2.col-lg-10
+              button.btn.btn-primary(type='submit') Log in

@@ -1,89 +1,65 @@
 ###
-	# Module
-	@name         :: Passport
-	@module       :: Service
-	@description  :: Provides extended functionality for Passport library.
+  # Module
+  @name         :: Passport
+  @module       :: Service
+  @description  :: Provides extended functionality for Passport library.
 
-	# Author
-	@author       :: Austris Landmanis
-	@licence      :: http://aus3ys.mit-license.org/
-	@year         :: 2013
-
-	# Contributors
-	...
+  # Author
+  @author       :: Austris Landmanis
+  @licence      :: http://aus3ys.mit-license.org/
+  @year         :: 2013
 ###
 
-
-# helper functions
-findById = (id, fn) ->
-	User.findOne(id).done (err, user) ->
-		if err
-			fn null, null
-		else
-			fn null, user
-
-findByUsername = (u, fn) ->
-	User.findOne(username: u).done (err, user) ->
-
-		# Error handling
-		if err
-			fn null, null
-
-		# The User was found successfully!
-		else
-			fn null, user
-
+bcrypt = require("bcrypt")
 passport = require("passport")
 LocalStrategy = require("passport-local").Strategy
-bcrypt = require("bcrypt")
-
-# Passport session setup.
-# To support persistent login sessions, Passport needs to be able to
-# serialize users into and deserialize users out of the session. Typically,
-# this will be as simple as storing the user ID when serializing, and finding
-# the user by ID when deserializing.
-passport.serializeUser (user, done) ->
-	done null, user.id
-
-passport.deserializeUser (id, done) ->
-	findById id, (err, user) ->
-		done err, user
 
 
+###
+  Helper functions
+###
 
-# Use the LocalStrategy within Passport.
-# Strategies in passport require a `verify` function, which accept
-# credentials (in this case, a username and password), and invoke a callback
-# with a user object.
-passport.use new LocalStrategy((username, password, done) ->
+helperFindById = (id, next) ->
+  User.findOne(id).done (error, user) ->
+    if error
+      next null, null
+    else
+      next null, user
 
-	# asynchronous verification, for effect...
-	process.nextTick ->
+helperFindByUsername = (username, next) ->
+  User.findOne(username: username).done (error, user) ->
+    if error
+      next null, null
+    else
+      next null, user
 
-		# Find the user by username. If there is no user with the given
-		# username, or the password is not correct, set the user to `false` to
-		# indicate failure and set a flash message. Otherwise, return the
-		# authenticated `user`.
-		findByUsername username, (err, user) ->
-			return done(null, err)  if err
-			unless user
-				return done(null, false,
-					message: "Unknown user " + username
-				)
-			bcrypt.compare password, user.password, (err, res) ->
-				unless res
-					return done(null, false,
-						message: "Invalid Password"
-					)
-				returnUser =
-					username: user.username
-					createdAt: user.createdAt
-					id: user.id
+###
+  Serialize functions
+###
 
-				done null, returnUser,
-					message: "Logged In Successfully"
+passport.serializeUser (user, next) ->
+  next null, user.id
 
+passport.deserializeUser (id, next) ->
+  helperFindById id, (error, user) ->
+    next error, user
 
+###
+  Strategy functions
+###
 
-
+passport.use new LocalStrategy((username, password, next) ->
+  process.nextTick ->
+    helperFindByUsername username, (error, user) ->
+      return next(null, error) if error
+      unless user
+        return next(null, false, message: "Unknown user " + username)
+      bcrypt.compare password, user.password, (error, res) ->
+        unless res
+          return next(null, false, message: "Invalid Password")
+        returnUser =
+          username: user.username
+          createdAt: user.createdAt
+          id: user.id
+        next(null, returnUser, message: "Logged In Successfully")
 )

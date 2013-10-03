@@ -1,11 +1,3 @@
-###
-Default 404 (not found) handler
-
-If no matches are found, Sails will respond using this handler:
-
-For more information on 404/notfound handling in Sails/Express, check out:
-http://expressjs.com/faq.html#404-handling
-###
 module.exports[404] = pageNotFound = (req, res, express404Handler) ->
 	statusCode = 404
 	result = status: statusCode

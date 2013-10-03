@@ -8,9 +8,6 @@
 	@author       :: Austris Landmanis
 	@licence      :: http://aus3ys.mit-license.org/
 	@year         :: 2013
-
-	# Contributors
-	...
 ###
 
 

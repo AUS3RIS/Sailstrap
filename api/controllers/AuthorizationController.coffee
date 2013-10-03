@@ -1,46 +1,45 @@
 ###
-	# Module
-	@name         :: Authorization
-	@module       :: Controller
-	@description  :: Contains request logic for authorization process.
+  # Module
+  @name         :: Authorization
+  @module       :: Controller
+  @description  :: Contains request logic for authorization process.
 
-	# Author
-	@author       :: Austris Landmanis
-	@licence      :: http://aus3ys.mit-license.org/
-	@year         :: 2013
-
-	# Contributors
-	...
+  # Author
+  @author       :: Austris Landmanis
+  @licence      :: http://aus3ys.mit-license.org/
+  @year         :: 2013
 ###
 
 passport = require 'passport'
 
 
 AuthorizationController =
-	###
-		View actions
-	###
+  ###
+    View functions
+  ###
 
-	login: (request, response) ->
-		response.view()
+  login: (req, res) ->
+    res.view({ message: req.flash('message') })
 
-	logout: (request, response) ->
-		request.logout()
-		response.redirect '/'
+  logout: (req, res) ->
+    req.logout()
+    res.redirect '/'
 
-	###
-		Logic actions
-	###
+  ###
+    Process functions
+  ###
 
-	process: (request, response) ->
-		passport.authenticate('local', (error, user, information) ->
-			request.logIn(user, (error) ->
-				if error
-					response.redirect '/login'
-				else
-					response.redirect '/'
-			)
-		) request, response
+  process: (req, res) ->
+    passport.authenticate('local', (error, user, information) ->
+      req.logIn(user, (error) ->
+        if error
+          req.flash('message', information.message)
+          res.redirect '/login'
+        else
+          req.flash('message', information.message)
+          res.redirect '/'
+      )
+    ) req, res
 
 
 module.exports = AuthorizationController

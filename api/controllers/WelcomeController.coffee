@@ -1,28 +1,25 @@
 ###
-	# Module
-	@name         :: Welcome
-	@module       :: Controller
-	@description  :: Contains request logic for welcome page.
+  # Module
+  @name         :: Welcome
+  @module       :: Controller
+  @description  :: Contains request logic for welcome page.
 
-	# Author
-	@author       :: Austris Landmanis
-	@licence      :: http://aus3ys.mit-license.org/
-	@year         :: 2013
-
-	# Contributors
-	...
+  # Author
+  @author       :: Austris Landmanis
+  @licence      :: http://aus3ys.mit-license.org/
+  @year         :: 2013
 ###
 
 # REQUIRED MODULES HERE
 
 
 WelcomeController =
-	###
-		View actions
-	###
+  ###
+    View functions
+  ###
 
-	index: (request, response) ->
-		response.view()
+  index: (req, res) ->
+    res.view({ message: req.flash('message') })
 
 
 module.exports = WelcomeController
