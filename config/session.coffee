@@ -1,4 +1,13 @@
 ###
+================================================================================
+  @module       :: Config
+  @name         :: Session
+  @description  :: Defines session settings for application.
+================================================================================
+###
+
+
+###
 Session
 
 Sails session integration leans heavily on the great work already done by Express, but also unifies

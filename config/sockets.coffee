@@ -1,4 +1,13 @@
 ###
+================================================================================
+  @module       :: Config
+  @name         :: Sockets
+  @description  :: Defines socket configuration for application.
+================================================================================
+###
+
+
+###
 Socket Configuration
 
 These configuration options provide transparent access to Sails' encapsulated

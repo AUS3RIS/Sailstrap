@@ -1,10 +1,20 @@
+###
+================================================================================
+  @module       :: Platform
+  @name         :: Gruntfile
+  @description  :: File used to define tasks for Grunt.
+================================================================================
+###
+
+
 module.exports = (grunt) ->
   depsPath = grunt.option("gdsrc") or "node_modules/sails/node_modules"
+  
   grunt.loadTasks depsPath + "/grunt-sails-linker/tasks"
-
   # grunt.loadTasks(depsPath + '/grunt-contrib-concat/tasks');
   # grunt.loadTasks(depsPath + '/grunt-contrib-uglify/tasks');
   # grunt.loadTasks(depsPath + '/grunt-contrib-cssmin/tasks');
+  
   grunt.loadNpmTasks "grunt-contrib-clean"
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.loadNpmTasks "grunt-contrib-watch"

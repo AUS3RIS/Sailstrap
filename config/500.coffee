@@ -1,11 +1,12 @@
 ###
-Default error handler
-
-If an error is thrown, Sails will respond using this default error handler
-
-For more information on error handling in Sails/Express, check out:
-http://expressjs.com/guide.html#error-handling
+================================================================================
+  @module       :: Config
+  @name         :: 500
+  @description  :: Defines how to handle 500 error.
+================================================================================
 ###
+
+
 module.exports[500] = serverErrorOccurred = (errors, req, res, expressErrorHandler) ->
 	statusCode = 500
 

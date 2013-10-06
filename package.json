@@ -23,7 +23,7 @@
     "forever": "~0.10.8"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "coffee server.coffee"
   },
   "repository": {
     "type": "git",

@@ -1,13 +1,9 @@
 ###
-  # Module
-  @name         :: Authorization
+================================================================================
   @module       :: Controller
-  @description  :: Contains request logic for authorization process.
-
-  # Author
-  @author       :: Austris Landmanis
-  @licence      :: http://aus3ys.mit-license.org/
-  @year         :: 2013
+  @name         :: Authorization
+  @description  :: Process requests and responses for authorization routes.
+================================================================================
 ###
 
 passport = require 'passport'

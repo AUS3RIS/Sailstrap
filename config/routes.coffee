@@ -1,3 +1,11 @@
+###
+================================================================================
+  @module       :: Config
+  @name         :: Routes
+  @description  :: Defines application routes through out application.
+================================================================================
+###
+
 
 ApplicationRoutes =
   # Welcome routes

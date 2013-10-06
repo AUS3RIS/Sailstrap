@@ -1,14 +1,11 @@
 ###
-  # Module
-  @name         :: User
+================================================================================
   @module       :: Model
-  @description  :: Defines data model for user.
-
-  # Author
-  @author       :: Austris Landmanis
-  @licence      :: http://aus3ys.mit-license.org/
-  @year         :: 2013
+  @name         :: User
+  @description  :: Provides user object with data model to work with.
+================================================================================
 ###
+
 
 bcrypt = require 'bcrypt'
 
@@ -41,7 +38,6 @@ UserModel =
     bcrypt.genSalt 10, (error, salt) ->
       bcrypt.hash user.password, salt, (error, hash) ->
         if error
-          console.log error
           callback error
         else
           user.password = hash

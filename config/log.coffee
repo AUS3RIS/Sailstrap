@@ -1,4 +1,13 @@
 ###
+================================================================================
+  @module       :: Config
+  @name         :: Log
+  @description  :: Defines application logging settings.
+================================================================================
+###
+
+
+###
 Logger configuration
 
 Configure the log level for your app, as well as the transport

@@ -1,4 +1,13 @@
 ###
+================================================================================
+  @module       :: Config
+  @name         :: Policies
+  @description  :: Defines used policies through out application.
+================================================================================
+###
+
+
+###
 Policy mappings (ACL)
 
 Policies are simply Express middleware functions which run **before** your controllers.

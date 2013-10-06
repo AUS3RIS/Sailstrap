@@ -1,13 +1,9 @@
 ###
-  # Module
-  @name         :: Passport
+================================================================================
   @module       :: Service
-  @description  :: Provides extended functionality for Passport library.
-
-  # Author
-  @author       :: Austris Landmanis
-  @licence      :: http://aus3ys.mit-license.org/
-  @year         :: 2013
+  @name         :: Passport
+  @description  :: Implementation for passport service to use in application.
+================================================================================
 ###
 
 bcrypt = require("bcrypt")

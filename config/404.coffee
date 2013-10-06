@@ -1,3 +1,12 @@
+###
+================================================================================
+  @module       :: Config
+  @name         :: 404
+  @description  :: Defines how to handle 404 error.
+================================================================================
+###
+
+
 module.exports[404] = pageNotFound = (req, res, express404Handler) ->
 	statusCode = 404
 	result = status: statusCode

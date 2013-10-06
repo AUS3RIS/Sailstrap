@@ -1,6 +1,16 @@
+###
+================================================================================
+  @module       :: Config
+  @name         :: Middleware
+  @description  :: Defines custom middleware for application.
+================================================================================
+###
+
 flash = require("connect-flash")
 passport = require("passport")
 LocalStrategy = require("passport-local").Strategy
+
+
 module.exports =
 	appName: "Sailstrap"
 	express:

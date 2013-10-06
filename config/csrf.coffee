@@ -1,4 +1,13 @@
 ###
+================================================================================
+  @module       :: Config
+  @name         :: CSRF
+  @description  :: Settings for Cross-Site Request Forgery Protection.
+================================================================================
+###
+
+
+###
 Cross-Site Request Forgery Protection
 
 CSRF tokens are like a tracking chip.  While a session tells the server that a user

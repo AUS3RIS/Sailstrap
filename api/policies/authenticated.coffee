@@ -1,13 +1,9 @@
 ###
-	# Module
-	@name         :: Authenticated
-	@module       :: Policy
-	@description  :: Defines logic used to identify authenticated users.
-
-	# Author
-	@author       :: Austris Landmanis
-	@licence      :: http://aus3ys.mit-license.org/
-	@year         :: 2013
+================================================================================
+  @module       :: Policy
+  @name         :: Authenticated
+  @description  :: Defines authenticated access within application.
+================================================================================
 ###
 
 

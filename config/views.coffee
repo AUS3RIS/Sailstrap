@@ -1,4 +1,13 @@
 ###
+================================================================================
+  @module       :: Config
+  @name         :: Views
+  @description  :: Defines views configuration settings.
+================================================================================
+###
+
+
+###
 Views
 
 Server-sent views are a classic and effective way to get your app up and running.

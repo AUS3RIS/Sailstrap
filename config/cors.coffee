@@ -1,4 +1,13 @@
 ###
+================================================================================
+  @module       :: Config
+  @name         :: CORS
+  @description  :: Settings for Cross-Origin Resource Sharing (CORS).
+================================================================================
+###
+
+
+###
 Cross-Origin Resource Sharing (CORS)
 
 CORS is like a more modern version of JSONP-- it allows your server/API
