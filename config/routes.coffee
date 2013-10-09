@@ -7,24 +7,30 @@
 ###
 
 
-ApplicationRoutes =
-  # Welcome routes
-  "get /":
-    controller: "welcome"
-    action: "index"
-  
-  # Authorization routes
-  "get /login":
-    controller: "authorization"
-    action: "login"
-  
-  "get /logout":
-    controller: "authorization"
-    action: "logout"
-  
-  "post /process":
-    controller: "authorization"
-    action: "process"
+RoutesConfig =
+  ###
+    Welcome controller
+  ###
+
+  'get /':
+    controller: 'welcome'
+    action: 'index'
+
+  ###
+    Authorization controller
+  ###
+
+  'post /authorization':
+    controller: 'authorization'
+    action: 'index'
+
+  'get /authorization/login':
+    controller: 'authorization'
+    action: 'login'
+
+  'get /authorization/logout':
+    controller: 'authorization'
+    action: 'logout'
 
 
-module.exports.routes = ApplicationRoutes
+module.exports.routes = RoutesConfig

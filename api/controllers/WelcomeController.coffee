@@ -15,7 +15,8 @@ WelcomeController =
   ###
 
   index: (req, res) ->
-    res.view({ message: req.flash('message') })
+   # res.view({ message: req.flash('message') })
+   res.view()
 
 
 module.exports = WelcomeController

@@ -24,8 +24,11 @@ module.exports = (grunt) ->
 
   # STYLES 
   styleFiles = [
-    "ui/styles/libraries/bootstrap.css",
     "ui/styles/libraries/*.css",
+    "ui/styles/elements/*.css",
+    "ui/styles/collections/*.css",
+    "ui/styles/views/*.css",
+    "ui/styles/modules/*.css",
     "ui/styles/*.css"
   ]
   # STYLES END 
@@ -41,22 +44,24 @@ module.exports = (grunt) ->
     "ui/scripts/libraries/backbone.js",
     "ui/scripts/libraries/*.js",
   ]
-  templateFiles = ["ui/templates/*.js"]
-  modelFiles = ["ui/scripts/core/models/*.js"]
-  collectionFiles = ["ui/scripts/core/collections/*.js"]
-  viewFiles = ["ui/scripts/core/views/*.js"]
-  routerFiles = ["ui/scripts/core/routers/*.js"]
-  initializeFiles = ["ui/scripts/core/*.js"]
+  moduleFiles = ["ui/scripts/modules/*.js"]
+  templateFiles = ["ui/scripts/templates/*.js"]
+  modelFiles = ["ui/scripts/models/*.js"]
+  collectionFiles = ["ui/scripts/collections/*.js"]
+  viewFiles = ["ui/scripts/views/*.js"]
+  routerFiles = ["ui/scripts/routers/*.js"]
+  initializerFiles = ["ui/scripts/*.js"]
   # SCRIPTS END 
   
   styleFiles = styleFiles.map((path) -> ".tmp/public/" + path)
   libraryFiles = libraryFiles.map((path) -> ".tmp/public/" + path)
+  moduleFiles = moduleFiles.map((path) -> ".tmp/public/" + path)
   templateFiles = templateFiles.map((path) -> ".tmp/public/" + path)
   modelFiles = modelFiles.map((path) -> ".tmp/public/" + path)
   collectionFiles = collectionFiles.map((path) -> ".tmp/public/" + path)
   viewFiles = viewFiles.map((path) -> ".tmp/public/" + path)
   routerFiles = routerFiles.map((path) -> ".tmp/public/" + path)
-  initializeFiles = initializeFiles.map((path) -> ".tmp/public/" + path)
+  initializerFiles = initializerFiles.map((path) -> ".tmp/public/" + path)
 
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
@@ -76,12 +81,11 @@ module.exports = (grunt) ->
       compile:
         options:
           namespace: "JST"
-
         files: [
           expand: true
-          cwd: "ui/templates"
+          cwd: "ui/scripts/templates/"
           src: ["*.jade"]
-          dest: ".tmp/public/ui/templates"
+          dest: ".tmp/public/ui/scripts/templates/"
           ext: ".js"
         ]
 
@@ -125,6 +129,15 @@ module.exports = (grunt) ->
           appRoot: ".tmp/public"
         files:
           "api/views/**/*.jade": libraryFiles
+
+      modules:
+        options:
+          startTag: "// MODULES "
+          endTag: "// MODULES END "
+          fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
+          appRoot: ".tmp/public"
+        files:
+          "api/views/**/*.jade": moduleFiles
 
       templates:
         options:
@@ -171,14 +184,14 @@ module.exports = (grunt) ->
         files:
           "api/views/**/*.jade": routerFiles
 
-      initialize:
+      initializers:
         options:
-          startTag: "// INITIALIZE "
-          endTag: "// INITIALIZE END "
+          startTag: "// INITIALIZERS "
+          endTag: "// INITIALIZERS END "
           fileTmpl: "script(type=\"text/javascript\", src=\"%s\")"
           appRoot: ".tmp/public"
         files:
-          "api/views/**/*.jade": initializeFiles
+          "api/views/**/*.jade": initializerFiles
 
     watch:
       api:
@@ -189,4 +202,4 @@ module.exports = (grunt) ->
 
   grunt.registerTask "default", ["compileAssets", "linkAssets", "watch"]
   grunt.registerTask "compileAssets", ["clean:dev", "copy:dev", "jade_handlebars:compile", "coffee:dev", "stylus:dev"]
-  grunt.registerTask "linkAssets", ["sails-linker:styles", "sails-linker:libraries", "sails-linker:templates", "sails-linker:models", "sails-linker:collections", "sails-linker:views", "sails-linker:routers", "sails-linker:initialize"]
+  grunt.registerTask "linkAssets", ["sails-linker:styles", "sails-linker:libraries", "sails-linker:modules", "sails-linker:templates", "sails-linker:models", "sails-linker:collections", "sails-linker:views", "sails-linker:routers", "sails-linker:initializers"]

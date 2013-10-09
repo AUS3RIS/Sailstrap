@@ -1,65 +1,134 @@
 !!! 5
-head
-  title #{title}
-  meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
-  
-  // STYLES 
-  link(rel="stylesheet", href="/ui/styles/libraries/bootstrap.css")
-  link(rel="stylesheet", href="/ui/styles/main.css")
-  // STYLES END 
-  
-body
-  // CONTENT 
-  nav.navbar.navbar-inverse.navbar-fixed-top
-    div.navbar-header
-      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-        span.sr-only Toggle
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href='/') #{title}
-    div.collapse.navbar-collapse.navbar-collapse 
-      ul.nav.navbar-nav.navbar-right
-        li
-          if req.isAuthenticated()
-            a(href='/logout') Log out
-          else
-            a(href='/login') Log in
+html(lang="en")
+  head
+    base(href="/")
+    meta(http-equiv="cache-control", content="no-cache")
+    meta(http-equiv="pragma", content="no-cache")
+    meta(charset="utf-8")
+    meta(name="description", content="")
+    meta(name="keywords", content="")
+    meta(name="robot", content="index,follow")
+    meta(name="author", content="")
+    meta(name="copyright", content="&copy;")
+    meta(name="viewport", content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=false")
 
-  p #{message}
+    title #{title}
 
-  block body
-  // CONTENT END 
-  
-  // LIBRARIES 
-  script(type="text/javascript", src="/ui/scripts/libraries/socket.js")
-  script(type="text/javascript", src="/ui/scripts/libraries/sails.js")
-  script(type="text/javascript", src="/ui/scripts/libraries/jquery.js")
-  script(type="text/javascript", src="/ui/scripts/libraries/bootstrap.js")
-  script(type="text/javascript", src="/ui/scripts/libraries/handlebars.js")
-  script(type="text/javascript", src="/ui/scripts/libraries/underscore.js")
-  script(type="text/javascript", src="/ui/scripts/libraries/backbone.js")
-  // LIBRARIES END 
-  
-  // TEMPLATES
-  // TEMPLATES END 
-  
-  // MODELS 
-  
-  // MODELS END 
-  
-  // COLLECTIONS 
-  
-  // COLLECTIONS END 
-  
-  // VIEWS 
-  script(type="text/javascript", src="/ui/scripts/core/views/main.js")
-  // VIEWS END 
-  
-  // ROUTERS 
-  
-  // ROUTERS END 
-  
-  // INITIALIZE 
-  script(type="text/javascript", src="/ui/scripts/core/main.js")
-  // INITIALIZE END 
+    // STYLES 
+    link(rel="stylesheet", href="/ui/styles/elements/basic.icon.css")
+    link(rel="stylesheet", href="/ui/styles/elements/button.css")
+    link(rel="stylesheet", href="/ui/styles/elements/divider.css")
+    link(rel="stylesheet", href="/ui/styles/elements/header.css")
+    link(rel="stylesheet", href="/ui/styles/elements/icon.css")
+    link(rel="stylesheet", href="/ui/styles/elements/image.css")
+    link(rel="stylesheet", href="/ui/styles/elements/input.css")
+    link(rel="stylesheet", href="/ui/styles/elements/label.css")
+    link(rel="stylesheet", href="/ui/styles/elements/loader.css")
+    link(rel="stylesheet", href="/ui/styles/elements/progress.css")
+    link(rel="stylesheet", href="/ui/styles/elements/segment.css")
+    link(rel="stylesheet", href="/ui/styles/elements/step.css")
+    link(rel="stylesheet", href="/ui/styles/collections/breadcrumb.css")
+    link(rel="stylesheet", href="/ui/styles/collections/form.css")
+    link(rel="stylesheet", href="/ui/styles/collections/grid.css")
+    link(rel="stylesheet", href="/ui/styles/collections/menu.css")
+    link(rel="stylesheet", href="/ui/styles/collections/message.css")
+    link(rel="stylesheet", href="/ui/styles/collections/table.css")
+    link(rel="stylesheet", href="/ui/styles/views/comment.css")
+    link(rel="stylesheet", href="/ui/styles/views/feed.css")
+    link(rel="stylesheet", href="/ui/styles/views/item.css")
+    link(rel="stylesheet", href="/ui/styles/views/list.css")
+    link(rel="stylesheet", href="/ui/styles/views/statistic.css")
+    link(rel="stylesheet", href="/ui/styles/modules/accordion.css")
+    link(rel="stylesheet", href="/ui/styles/modules/chatroom.css")
+    link(rel="stylesheet", href="/ui/styles/modules/checkbox.css")
+    link(rel="stylesheet", href="/ui/styles/modules/dimmer.css")
+    link(rel="stylesheet", href="/ui/styles/modules/dropdown.css")
+    link(rel="stylesheet", href="/ui/styles/modules/modal.css")
+    link(rel="stylesheet", href="/ui/styles/modules/nag.css")
+    link(rel="stylesheet", href="/ui/styles/modules/popup.css")
+    link(rel="stylesheet", href="/ui/styles/modules/rating.css")
+    link(rel="stylesheet", href="/ui/styles/modules/reveal.css")
+    link(rel="stylesheet", href="/ui/styles/modules/search.css")
+    link(rel="stylesheet", href="/ui/styles/modules/shape.css")
+    link(rel="stylesheet", href="/ui/styles/modules/sidebar.css")
+    link(rel="stylesheet", href="/ui/styles/modules/tab.css")
+    link(rel="stylesheet", href="/ui/styles/modules/transition.css")
+    link(rel="stylesheet", href="/ui/styles/modules/video.css")
+    link(rel="stylesheet", href="/ui/styles/main.css")
+    // STYLES END 
+    
+  body(style="visibility: visible;")
+    // CONTENT 
+    a.ui.button.hover(href="#") HEllO
+    nav.navbar.navbar-default.navbar-fixed-top
+      div.navbar-header
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+          span.sr-only Toggle
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand(href='/') #{title}
+      div.collapse.navbar-collapse.navbar-collapse 
+        ul.nav.navbar-nav.navbar-right
+          li
+            if req.isAuthenticated()
+              a(href='/logout') Log out
+            else
+              a(href='/login') Log in
+
+    p #{message}
+
+    block body
+    // CONTENT END 
+    
+    // LIBRARIES 
+    script(type="text/javascript", src="/ui/scripts/libraries/socket.js")
+    script(type="text/javascript", src="/ui/scripts/libraries/sails.js")
+    script(type="text/javascript", src="/ui/scripts/libraries/jquery.js")
+    script(type="text/javascript", src="/ui/scripts/libraries/bootstrap.js")
+    script(type="text/javascript", src="/ui/scripts/libraries/handlebars.js")
+    script(type="text/javascript", src="/ui/scripts/libraries/underscore.js")
+    script(type="text/javascript", src="/ui/scripts/libraries/backbone.js")
+    // LIBRARIES END 
+
+    // MODULES 
+    script(type="text/javascript", src="/ui/scripts/modules/accordion.js")
+    script(type="text/javascript", src="/ui/scripts/modules/chatroom.js")
+    script(type="text/javascript", src="/ui/scripts/modules/checkbox.js")
+    script(type="text/javascript", src="/ui/scripts/modules/dimmer.js")
+    script(type="text/javascript", src="/ui/scripts/modules/dropdown.js")
+    script(type="text/javascript", src="/ui/scripts/modules/modal.js")
+    script(type="text/javascript", src="/ui/scripts/modules/nag.js")
+    script(type="text/javascript", src="/ui/scripts/modules/popup.js")
+    script(type="text/javascript", src="/ui/scripts/modules/rating.js")
+    script(type="text/javascript", src="/ui/scripts/modules/search.js")
+    script(type="text/javascript", src="/ui/scripts/modules/shape.js")
+    script(type="text/javascript", src="/ui/scripts/modules/sidebar.js")
+    script(type="text/javascript", src="/ui/scripts/modules/tab.js")
+    script(type="text/javascript", src="/ui/scripts/modules/transition.js")
+    script(type="text/javascript", src="/ui/scripts/modules/video.js")
+    // MODULES END 
+    
+    // TEMPLATES 
+    script(type="text/javascript", src="/ui/scripts/templates/template.js")
+    // TEMPLATES END 
+    
+    // MODELS 
+    
+    // MODELS END 
+    
+    // COLLECTIONS 
+    
+    // COLLECTIONS END 
+    
+    // VIEWS 
+    script(type="text/javascript", src="/ui/scripts/views/main.js")
+    // VIEWS END 
+    
+    // ROUTERS 
+    
+    // ROUTERS END 
+    
+    // INITIALIZERS 
+    script(type="text/javascript", src="/ui/scripts/main.js")
+    // INITIALIZERS END 
