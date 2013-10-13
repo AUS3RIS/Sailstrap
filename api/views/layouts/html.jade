@@ -1,0 +1,18 @@
+!!! 5
+html(lang="en")
+  head
+    include partials/meta
+    include partials/styles
+    
+  body(style="visibility: visible;")
+    // CONTENT 
+    div.ui.menu
+      a.brand.item.active  Sailstrap
+      div.right.menu
+        a.item Sign up
+        a.item(href='/authorization/login') Log in
+
+    block body
+    // CONTENT END 
+    
+    include partials/scripts

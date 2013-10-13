@@ -1,7 +1,6 @@
-extends ../layouts/default
+extends ../layouts/html
 
 block body
-  div.container
-    div.row
-      div.col-md-12
-        p hi
+  if message
+    div.ui.message
+      p #{message}

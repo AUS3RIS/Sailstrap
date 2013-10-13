@@ -1,18 +1,11 @@
-extends ../layouts/default
+extends ../layouts/html
 
 block body
-  div.container
-    div.row
-      div.col-md-12
-        form.form-horizontal(method='post', action='/process')
-          div.form-group
-            label.col-md-3.control-label Username
-            div.col-md-3
-              input.form-control(name='username', type='text', placeholder='Username')
-          div.form-group
-            label.col-md-2.control-label Password
-            .col-md-4
-              input.form-control(name='password', type='password', placeholder='Password')
-          div.form-group
-            div.col-md-offset-2.col-md-10
-              button.btn.btn-primary(type='submit') Log in
+  if message
+    div.ui.message
+      p #{message}
+
+  form(method='post',action='/authorization')
+    input(name='username',type='text',placeholder='Username')
+    input(name='password',type='password',placeholder='Password')
+    button.btn.btn-primary(type='submit') Log in

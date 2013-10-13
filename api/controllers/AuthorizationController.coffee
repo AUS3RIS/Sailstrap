@@ -19,7 +19,7 @@ AuthorizationController =
       req.logIn(user, (err) ->
         if err
           req.flash('message', info.message)
-          res.redirect '/login'
+          res.redirect '/authorization/login'
         else
           req.flash('message', info.message)
           res.redirect '/'
