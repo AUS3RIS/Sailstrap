@@ -11,6 +11,7 @@ module.exports = (grunt) ->
   depsPath = grunt.option("gdsrc") or "node_modules/sails/node_modules"
   
   grunt.loadTasks depsPath + "/grunt-sails-linker/tasks"
+  grunt.loadTasks depsPath + '/grunt-contrib-less/tasks'
   # grunt.loadTasks(depsPath + '/grunt-contrib-concat/tasks');
   # grunt.loadTasks(depsPath + '/grunt-contrib-uglify/tasks');
   # grunt.loadTasks(depsPath + '/grunt-contrib-cssmin/tasks');
@@ -18,13 +19,13 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-clean"
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.loadNpmTasks "grunt-contrib-watch"
-  grunt.loadNpmTasks "grunt-contrib-stylus"
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-jade-handlebars"
 
   # STYLES 
   styleFiles = [
     "ui/styles/libraries/*.css",
+    "ui/styles/typeface/*.css",
     "ui/styles/elements/*.css",
     "ui/styles/collections/*.css",
     "ui/styles/views/*.css",
@@ -101,14 +102,16 @@ module.exports = (grunt) ->
           ext: ".js"
         ]
 
-    stylus:
+    less:
       dev:
         files: [
-          expand: true
-          cwd: "ui/styles/"
-          src: ["*.styl"]
-          dest: ".tmp/public/ui/styles/"
-          ext: ".css"
+          {
+            expand: true
+            cwd: "ui/styles/"
+            src: ["*.less", "**/*.less"]
+            dest: ".tmp/public/ui/styles/"
+            ext: ".css"
+          }
         ]
 
     "sails-linker":
@@ -201,5 +204,5 @@ module.exports = (grunt) ->
         tasks: ["compileAssets", "linkAssets"]
 
   grunt.registerTask "default", ["compileAssets", "linkAssets", "watch"]
-  grunt.registerTask "compileAssets", ["clean:dev", "copy:dev", "jade_handlebars:compile", "coffee:dev", "stylus:dev"]
+  grunt.registerTask "compileAssets", ["clean:dev", "copy:dev", "jade_handlebars:compile", "coffee:dev", "less:dev"]
   grunt.registerTask "linkAssets", ["sails-linker:styles", "sails-linker:libraries", "sails-linker:modules", "sails-linker:templates", "sails-linker:models", "sails-linker:collections", "sails-linker:views", "sails-linker:routers", "sails-linker:initializers"]

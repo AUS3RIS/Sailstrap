@@ -14,16 +14,6 @@
 $.fn.checkbox = function(parameters) {
   var
     $allModules    = $(this),
-
-    settings       = $.extend(true, {}, $.fn.checkbox.settings, parameters),
-
-    className      = settings.className,
-    namespace      = settings.namespace,
-    error          = settings.error,
-
-    eventNamespace  = '.' + namespace,
-    moduleNamespace = 'module-' + namespace,
-
     moduleSelector = $allModules.selector || '',
 
     time           = new Date().getTime(),
@@ -38,6 +28,15 @@ $.fn.checkbox = function(parameters) {
   $allModules
     .each(function() {
       var
+        settings        = $.extend(true, {}, $.fn.checkbox.settings, parameters),
+
+        className       = settings.className,
+        namespace       = settings.namespace,
+        error           = settings.error,
+
+        eventNamespace  = '.' + namespace,
+        moduleNamespace = 'module-' + namespace,
+
         $module         = $(this),
         $label          = $(this).next(settings.selector.label).first(),
         $input          = $(this).find(settings.selector.input),
@@ -104,7 +103,7 @@ $.fn.checkbox = function(parameters) {
         },
 
         enable: function() {
-          module.debug('Enabling checkbox');
+          module.debug('Enabling checkbox', $input);
           $input
             .prop('checked', true)
           ;
@@ -217,9 +216,6 @@ $.fn.checkbox = function(parameters) {
             title += ' ' + totalTime + 'ms';
             if(moduleSelector) {
               title += ' \'' + moduleSelector + '\'';
-            }
-            if($allModules.size() > 1) {
-              title += ' ' + '(' + $allModules.size() + ')';
             }
             if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
               console.groupCollapsed(title);
