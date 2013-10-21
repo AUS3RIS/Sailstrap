@@ -27,7 +27,7 @@ UserModel =
   
     toJSON: ->
       object = @toObject()
-      delete object.password
+      # delete object.password
       object
 
   ###
